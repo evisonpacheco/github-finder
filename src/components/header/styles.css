@@ -1,0 +1,17 @@
+header {
+  background-color: #2D333B;
+  height: 3rem;
+  width: 100%;
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 999;
+}
+
+h1 {
+  color: #FFFFFF;
+  font-family: 'Inter, Roboto, Arial';
+  font-size: 1.5rem;
+}
