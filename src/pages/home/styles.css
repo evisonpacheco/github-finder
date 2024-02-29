@@ -95,6 +95,8 @@
   margin: 0.5rem 0 0;
 }
 
+/* Grid Kendo UI  */
+
 .repositories__title {
   color: #FFFFFF;
   font-size: 2rem;
@@ -102,6 +104,23 @@
   text-align: center;
 }
 
+.grid {
+  background-color: #999999;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.grid__collumn--name {
+  background-color: #2D3338;
+  color: #539BF5;
+  padding: 1rem;
+}
+
+.grid__collumn--description {
+  background-color: #2D3338;
+  color: #FFFFFF;
+  padding: 1rem;
+}
 
 @media screen and (min-width: 800px) {
 .content {

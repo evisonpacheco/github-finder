@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Header} from '../../components/header';
 import background from '../../assets/background.svg';
-import ItemRepositoryList from '../../components/itemRepositoryList';
+import { Grid, GridColumn as Column } from '@progress/kendo-react-grid';
 
 import './styles.css';
 
@@ -9,12 +9,10 @@ function App() {
   const [user, setUser] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const [repos, setRepos] = useState(null);
-
+    
   const handleGetData = async () => {
     const userData = await fetch(`https://api.github.com/users/${user}`);
     const newUser = await userData.json();
-
-    console.log(newUser);
 
     if(newUser.name){
       const {avatar_url, name, bio, login} = newUser;
@@ -56,14 +54,15 @@ function App() {
           </>
           ) : null}
           {repos?.length ? (
-          <>
-          <div className="repositories">
-            <h4 className="repositories__title">Repositórios</h4>
-            {repos.map((repo) => (
-              <ItemRepositoryList title={repo.name} description={repo.description}/>
-            ))}
-          </div>
-          </>
+            <div className="repositories">
+              <h4 className="repositories__title">Repositórios</h4>
+              <Grid className="grid"
+              data = {repos}
+              >
+              <Column className="grid__collumn--name" field="name" title="Nome" width="100px"/>
+              <Column className="grid__collumn--description" field="description" title="Descrição" width="300px"/>
+              </Grid>
+            </div>
           ) : null }
         </div>
       </div>
