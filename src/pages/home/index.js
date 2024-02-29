@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {Header} from '../../components/header';
 import background from '../../assets/background.svg';
 import { KendoGrid } from '../../components/kendoGrid';
+import { Profile } from '../../components/profile';
 
 import './styles.css';
 
@@ -22,7 +23,6 @@ function App() {
       const newRepos = await reposData.json();
       
       if (newRepos.length > 0){
-        console.log(newRepos);
         setRepos(newRepos);
         }  
     }
@@ -42,17 +42,7 @@ function App() {
             <button className="user__button" onClick={handleGetData}>Buscar</button>
           </div>
           {currentUser?.name ? ( 
-          <>
-            <div className="profile">
-            <img className="profile__img" src={currentUser.avatar_url}></img>
-            <div>
-              <h3 className="profile__title">{currentUser.name}</h3>
-              <p className="profile__user">@{currentUser.login}</p>
-              <p className="profile__description">{currentUser.bio}</p>
-            </div>
-          </div>
-          <hr />
-          </>
+            <Profile currentUser={currentUser} />
           ) : null}
           {repos?.length ? (
             <div className="repositories">
