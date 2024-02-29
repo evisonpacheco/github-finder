@@ -1,9 +1,7 @@
 import {useState} from 'react';
 import {Header} from '../../components/header';
 import background from '../../assets/background.svg';
-import { Grid, GridColumn as Column, GridToolbar } from '@progress/kendo-react-grid';
-import { Input } from '@progress/kendo-react-inputs';
-import { filterBy } from '@progress/kendo-data-query';
+import { KendoGrid } from '../../components/kendoGrid';
 
 import './styles.css';
 
@@ -11,12 +9,10 @@ function App() {
   const [user, setUser] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const [repos, setRepos] = useState(null);
-  const [data, setData] = useState();
-  
   const handleGetData = async () => {
     
     const userData = await fetch(`https://api.github.com/users/${user}`);
-    const newUser = await userData.json();
+    const newUser = await userData.json();    
     
     if(newUser.name){
       const {avatar_url, name, bio, login} = newUser;
@@ -25,33 +21,11 @@ function App() {
       const reposData = await fetch(`https://api.github.com/users/${user}/repos`);
       const newRepos = await reposData.json();
       
-      if(newRepos.length){
+      if (newRepos.length > 0){
+        console.log(newRepos);
         setRepos(newRepos);
-        setData(newRepos);
-      }
+        }  
     }
-    console.log(data);
-
-    return data;
-  }
-
-  const filterData = e => {
-    let value = e.target.value;
-    let filter = {
-      logic: "or",
-      filters: [{
-        field: "name",
-        operator: "contains",
-        value: value,
-      },
-      {
-        field: "description",
-        operator: "contains",
-        value: value,
-      }
-      ]
-    }
-    setData(filterBy(repos, filter));
   }
 
   return (
@@ -83,15 +57,7 @@ function App() {
           {repos?.length ? (
             <div className="repositories">
               <h4 className="repositories__title">Repositórios</h4>
-              <Grid className="grid"
-              data = {(data)}
-              >
-                <GridToolbar>
-                  <Input className="grid__input" placeholder="Pesquise uma palavra chave" onChange={filterData} />
-                </GridToolbar>
-              <Column className="grid__collumn--name" field="name" title="Nome" width="100px"/>
-              <Column className="grid__collumn--description" field="description" title="Descrição" width="300px"/>
-              </Grid>
+              <KendoGrid repos={repos}/>
             </div>
           ) : null }
         </div>
