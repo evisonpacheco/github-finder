@@ -45,5 +45,3 @@ Filterable table of repositories developed with Kendo UI.
 
 ### Technologies / Tools used:
 React, JavaScript, Kendo UI, HTML and CSS
-
-Translated with DeepL.com (free version)
