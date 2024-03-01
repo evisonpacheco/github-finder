@@ -3,6 +3,7 @@ import {Header} from '../../components/header';
 import background from '../../assets/background.svg';
 import { KendoGrid } from '../../components/kendoGrid';
 import { Profile } from '../../components/profile';
+import { Footer } from '../../components/footer';
 
 import './styles.css';
 
@@ -52,6 +53,7 @@ function App() {
           ) : null }
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
