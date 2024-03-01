@@ -7,7 +7,7 @@ import './styles.css'
 
 export const KendoGrid = (repos)  => {
   const [data, setData] = useState(repos.repos);
-  console.log(`Este é o valor em Grid de repos ${repos.repos}`)
+  
   const filterData = e => {
     let value = e.target.value;
     let filter = {

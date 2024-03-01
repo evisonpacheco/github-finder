@@ -11,7 +11,11 @@ function App() {
   const [user, setUser] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const [repos, setRepos] = useState(null);
+  
   const handleGetData = async () => {
+
+    setCurrentUser(null);
+    setRepos(null);
     
     const userData = await fetch(`https://api.github.com/users/${user}`);
     const newUser = await userData.json();    
